@@ -16,7 +16,7 @@ if [[ -n $(git status --porcelain) ]]; then
   # Pousser les modifications sur le repo Elysion-Dev
   git push origin main
   
-  echo "✅ Code envoyé automatiquement sur Elysion-Dev ! 🚀"
+  echo "✅ Code envoyé automatiquement sur Elysion-Dev ! 🚀 Test de mise en ligne auto"
 else
   echo "✅ Aucun changement à pousser, tout est à jour."
 fi
