@@ -9,7 +9,7 @@ app.use(express.json());
 
 // Route de test
 app.get("/", (req, res) => {
-  res.send("Backend Elysion fonctionne !🚀");
+  res.send("Backend Elysion fonctionne ! En cours d'utilisation🚀");
 });
 
 // Démarrer le serveur
