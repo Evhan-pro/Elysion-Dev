@@ -1,0 +1,124 @@
+/* ----- Page Bulletins ----- */
+.bulletin-page {
+    background-color: #f3f4f6;
+    min-height: 100vh;
+    padding-top: 120px; /* évite que le menu le masque */
+    padding-bottom: 40px;
+  }
+  
+  /* Zone de dépôt */
+  .dropzone {
+    border: 2px dashed #1E3A8A;
+    background-color: #ffffff;
+    padding: 40px;
+    border-radius: 12px;
+    text-align: center;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .dropzone:hover {
+    background-color: #f0f4ff;
+  }
+  
+  /* Liste des bulletins */
+  .bulletin-list {
+    background-color: #ffffff;
+    border-radius: 12px;
+    padding: 30px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.05);
+  }
+  
+  .bulletin-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    padding: 12px 16px;
+    margin-bottom: 12px;
+    background-color: #f9fafb;
+  }
+  
+  /* Statuts */
+  .bulletin-status.validé {
+    background-color: #d1fae5;
+    color: #065f46;
+    padding: 4px 10px;
+    border-radius: 6px;
+    font-weight: 500;
+    font-size: 0.875rem;
+  }
+  
+  .bulletin-status.attente {
+    background-color: #fef3c7;
+    color: #92400e;
+    padding: 4px 10px;
+    border-radius: 6px;
+    font-weight: 500;
+    font-size: 0.875rem;
+  }
+  
+  /* Pop-up sélection période */
+  .popup-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+  }
+  
+  .popup-box {
+    background-color: #ffffff;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+    width: 90%;
+    max-width: 400px;
+    text-align: center;
+  }
+  
+  .popup-box input {
+    width: 100%;
+    padding: 10px;
+    border-radius: 8px;
+    border: 1px solid #d1d5db;
+    margin-bottom: 15px;
+  }
+  
+  .popup-box button {
+    background-color: #1E3A8A;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-weight: 600;
+    border: none;
+    transition: background-color 0.3s ease;
+  }
+  
+  .popup-box button:hover {
+    background-color: #FCD34D;
+    color: #1E3A8A;
+  }
+  
+  /* Filtres */
+  .filter-section {
+    margin-top: 40px;
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.05);
+  }
+  
+  .filter-section input {
+    width: 100%;
+    padding: 10px;
+    border-radius: 8px;
+    border: 1px solid #d1d5db;
+  }
+  

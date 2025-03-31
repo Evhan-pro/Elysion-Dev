@@ -1,0 +1,154 @@
+@import "bootstrap/dist/css/bootstrap.min.css";
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  width: 100%;
+  height: 100%;
+  overflow-x: hidden;
+}
+
+a {
+  text-decoration: none !important;
+}
+
+/* ----- Fond Vidéo ----- */
+.video-background { 
+  position: absolute;
+  top: 0;
+  left: 0; 
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: -1;
+}
+
+/* ----- Overlay pour améliorer la lisibilité ----- */
+.overlay {
+  position: absolute;  
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(30, 58, 138, 0.5); /* Bleu foncé transparent */
+  z-index: -1;
+}
+
+/* ----- Section principale ----- */
+.hero-section {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+/* ----- Boutons ----- */
+.button-primary {
+  background-color: #ffffff;
+  color: #1E3A8A; /* Bleu foncé */
+  padding: 12px 24px;
+  border-radius: 8px;
+  font-weight: 600;
+  transition: all 0.3s ease-in-out;
+}
+
+.button-primary:hover {
+  background-color: #FCD34D; /* Jaune premium */
+  color: #1E3A8A;
+}
+
+/* ----- Sections scroll ----- */
+.section {
+  padding: 80px 20px;
+  background-color: #ffffff;
+  text-align: center;
+}
+
+.section h2 {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #1E3A8A; /* Bleu foncé */
+}
+
+/* ----- Avis Clients ----- */
+.testimonial-card {
+  background-color: #F9FAFB;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.testimonial-avatar {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  margin: auto;
+}
+
+/* ----- Formulaire Contact ----- */
+.contact-form input,
+.contact-form textarea {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #D1D5DB;
+  border-radius: 8px;
+  margin-bottom: 10px;
+}
+
+.contact-form button {
+  background-color: #1E3A8A;
+  color: white;
+  padding: 12px 24px;
+  border-radius: 8px;
+  font-weight: 600;
+  transition: all 0.3s ease-in-out;
+}
+
+.contact-form button:hover {
+  background-color: #FCD34D;
+  color: #1E3A8A;
+}
+
+/* ----- Menu Sticky ----- */
+.sticky-menu {
+  position: fixed;
+  top: 20px;
+  left: 0;
+  width: 100%;
+  border-radius: 0 0 12px 12px;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  padding: 12px 24px;
+  font-size: 20px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease-in-out;
+  z-index: 1000;
+}
+
+.sticky-menu.hidden {
+  transform: translateY(-100%);
+}
+
+/* ----- Animation d'apparition ----- */
+.fade-in {
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeInUp 0.6s ease-out forwards;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

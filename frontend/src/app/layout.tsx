@@ -1,0 +1,27 @@
+import '../styles/globals.css';
+import "bootstrap/dist/css/bootstrap.min.css";
+import ChatBot from "../components/ChatBot";
+console.log("globals.css chargé !");
+
+export default function Layout({ children }: { children: React.ReactNode }) {
+  return (
+    <html lang="fr">
+      <body className="min-h-screen bg-gray-100 text-gray-900">
+        {/* Header */}
+        <header className="bg-blue-600 text-white p-4 shadow-md">
+          <div className="container mx-auto text-xl font-semibold">
+            Simulateur de Retraite
+          </div>
+        </header>
+        
+        {/* Main Content */}
+        <main className=" mx-auto p-6">{children}<ChatBot /></main>
+        
+        {/* Footer */}
+        <footer className="bg-blue-600 text-white text-center p-4 mt-6">
+          © {new Date().getFullYear()} Simulateur de Retraite. Tous droits réservés.
+        </footer>
+      </body>
+    </html>
+  );
+}
