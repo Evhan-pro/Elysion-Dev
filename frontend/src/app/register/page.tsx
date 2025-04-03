@@ -35,7 +35,7 @@ export default function RegisterPage() {
   
       alert("Inscription réussie !");
       console.log("Utilisateur inscrit :", data);
-      // Redirige vers la page de connexion ou dashboard
+      // Redirige vers la page de connexion
     } catch (error: any) {
       alert(error.message);
     }
