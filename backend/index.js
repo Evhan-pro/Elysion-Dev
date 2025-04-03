@@ -1,26 +1,23 @@
-require("dotenv").config();
-const express = require("express");
-const cors = require("cors");
-const axios = require("axios");
+import dotenv from "dotenv";
+import express from "express";
+import cors from "cors";
+import axios from "axios";
+
+import sequelize from "./config/database.js";
+import User from "./models/User.js";
+import authRoutes from "./routes/auth.js";
+
+dotenv.config();
 
 const app = express();
 const PORT = process.env.PORT || 5000;
 
-// === Base de données (Sequelize / MySQL) ===
-const sequelize = require("./config/database");
-const User = require("./models/User");
-
-// Synchronisation avec la base
-sequelize.authenticate()
-  .then(() => console.log("🗄️ Connexion MySQL réussie"))
-  .catch((err) => console.error("❌ Erreur connexion MySQL :", err));
-
-sequelize.sync() // force: true pour recréer les tables à chaque lancement (attention !)
-  .then(() => console.log("📦 Tables synchronisées"))
-  .catch((err) => console.error("❌ Erreur synchronisation des tables :", err));
-
 // === Middlewares globaux ===
-app.use(cors({ origin: "http://localhost:3001", methods: "GET,POST" }));
+app.use(cors({
+  origin: "*",
+  methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+  allowedHeaders: ["Content-Type", "Authorization"],
+}));
 app.use(express.json());
 
 // === Route de test ===
@@ -58,10 +55,17 @@ app.post("/api/chatbot", async (req, res) => {
 });
 
 // === Routes Auth ===
-const authRoutes = require("./routes/auth");
 app.use("/api/auth", authRoutes);
 
-// === Lancement du serveur ===
-app.listen(PORT, () => {
-  console.log(`✅ Serveur backend lancé sur http://localhost:${PORT}`);
-});
+// === Connexion à la BDD et lancement du serveur ===
+sequelize.authenticate()
+  .then(() => console.log("🗄️ Connexion MySQL réussie"))
+  .then(() => sequelize.sync())
+  .then(() => {
+    app.listen(PORT, () => {
+      console.log(`✅ Serveur backend lancé sur http://localhost:${PORT}`);
+    });
+  })
+  .catch((err) => {
+    console.error("❌ Erreur au démarrage :", err);
+  });
