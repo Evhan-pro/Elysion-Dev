@@ -2,7 +2,6 @@ import dotenv from "dotenv";
 import express from "express";
 import cors from "cors";
 import axios from "axios";
-
 import sequelize from "./config/database.js";
 import User from "./models/User.js";
 import authRoutes from "./routes/auth.js";

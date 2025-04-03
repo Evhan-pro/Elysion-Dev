@@ -12,6 +12,10 @@ html, body {
   overflow-x: hidden;
 }
 
+p{
+  color: black;
+}
+
 a {
   text-decoration: none !important;
 }
