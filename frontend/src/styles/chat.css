@@ -134,8 +134,8 @@
 }
 
 .chat-avatar {
-  width: 44px;
-  height: 44px;
+  width: 20%;
+  height: 20%;
   border-radius: 50%;
   flex-shrink: 0;
 }

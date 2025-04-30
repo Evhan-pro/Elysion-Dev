@@ -102,93 +102,53 @@ export default function ChatBot() {
           </div>
 
           <div className="chat-body" ref={chatBodyRef}>
-            {messages.map((msg, i) => (
-              <div key={i} className={`chat-msg ${msg.role}`}>
-                <div
-                  style={{
-                    display: "flex",
-                    alignItems: "flex-start",
-                    gap: "14px",
-                  }}
-                >
-                  <img
-                    src={msg.role === "bot" ? "/bot-avatar.png" : "/user-avatar.png"}
-                    alt={msg.role === "bot" ? "IA" : "Vous"}
-                    width={40}
-                    height={40}
-                    style={{ borderRadius: "50%", marginTop: 2 }}
-                  />
-                  <div>
-                    <div style={{ fontSize: "1.1rem", lineHeight: 1.5 }}>{msg.text}</div>
-                    <div
-                      style={{
-                        fontSize: "0.85rem",
-                        color: "#6b7280",
-                        marginTop: 6,
-                      }}
-                    >
-                      {msg.time}
-                    </div>
+  {messages.map((msg, i) => (
+    <div key={i} className={`chat-msg ${msg.role}`}>
+      <div className="chat-avatar-row">
+        <img
+          src={msg.role === "bot" ? "/bot-avatar.png" : "/user-avatar.png"}
+          alt={msg.role === "bot" ? "IA" : "Vous"}
+          className="chat-avatar"
+        />
+        <div className="chat-bubble-content">
+          <div className="chat-text">{msg.text}</div>
+          <div className="chat-time">{msg.time}</div>
 
-                    {msg.role === "bot" && (
-                      <div
-                        style={{
-                          marginTop: 8,
-                          display: "flex",
-                          gap: 14,
-                          fontSize: "1.4rem",
-                        }}
-                      >
-                        <button
-                          onClick={() => handleFeedback("up", msg.text)}
-                          style={{
-                            background: "transparent",
-                            border: "none",
-                            cursor: "pointer",
-                          }}
-                          title="Utile"
-                        >
-                          👍
-                        </button>
-                        <button
-                          onClick={() => handleFeedback("down", msg.text)}
-                          style={{
-                            background: "transparent",
-                            border: "none",
-                            cursor: "pointer",
-                          }}
-                          title="Pas utile"
-                        >
-                          👎
-                        </button>
-                      </div>
-                    )}
-                  </div>
-                </div>
-              </div>
-            ))}
+          {msg.role === "bot" && (
+            <div className="chat-feedback">
+              <button
+                onClick={() => handleFeedback("up", msg.text)}
+                title="Utile"
+              >
+                👍
+              </button>
+              <button
+                onClick={() => handleFeedback("down", msg.text)}
+                title="Pas utile"
+              >
+                👎
+              </button>
+            </div>
+          )}
+        </div>
+      </div>
+    </div>
+  ))}
 
-            {loading && (
-              <div className="chat-msg bot">
-                <div
-                  style={{
-                    display: "flex",
-                    alignItems: "center",
-                    gap: "12px",
-                  }}
-                >
-                  <img
-                    src="/bot-avatar.png"
-                    alt="IA"
-                    width={40}
-                    height={40}
-                    style={{ borderRadius: "50%" }}
-                  />
-                  <span style={{ fontSize: "1.1rem" }}>⏳ Réflexion…</span>
-                </div>
-              </div>
-            )}
-          </div>
+  {loading && (
+    <div className="chat-msg bot">
+      <div className="chat-avatar-row">
+        <img
+          src="/bot-avatar.png"
+          alt="IA"
+          className="chat-avatar"
+        />
+        <span className="chat-text">⏳ Réflexion…</span>
+      </div>
+    </div>
+  )}
+</div>
+ 
 
           <div className="chat-input">
             <input
