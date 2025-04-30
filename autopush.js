@@ -16,7 +16,6 @@ const commits = {
 
 console.clear();
 console.log(gradient.instagram(figlet.textSync('AutoPush', { horizontalLayout: 'fitted' })));
-console.log(chalk.gray('by ChatGPT x K3605\n'));
 
 inquirer
   .prompt([
