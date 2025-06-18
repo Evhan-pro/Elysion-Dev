@@ -4,6 +4,7 @@ import "react-toastify/dist/ReactToastify.css";
 
 import ChatBot from "../components/ChatBot";
 import { ToastContainer } from "react-toastify";
+import { SpeedInsights } from "@vercel/speed-insights/next"
 
 console.log("globals.css chargé !");
 
@@ -40,6 +41,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
         <footer className="bg-blue-600 text-white text-center p-4 mt-6">
           © {new Date().getFullYear()} Simulateur de Retraite. Tous droits réservés.
         </footer>
+        <SpeedInsights />
       </body>
     </html>
   );

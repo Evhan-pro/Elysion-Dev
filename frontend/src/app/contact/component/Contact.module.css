@@ -1,0 +1,113 @@
+/* --------- 1. Conteneur principal --------- */
+.wrapper {
+  background: #e5ecf5;
+  min-height: 100vh;
+  padding: 4rem 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Le titre est désormais une classe locale : */
+.title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 2.5rem;
+  text-align: center;
+}
+
+/* --------- 2. Carte-formulaire --------- */
+.form {
+  width: 100%;
+  max-width: 640px;
+  background: #ffffff;
+  padding: 2.5rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.07);
+  display: grid;
+  gap: 1.5rem;
+}
+
+/* Champs à deux colonnes (>640 px) */
+.row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.25rem;
+}
+@media (max-width: 640px) {
+  .row {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* --------- 3. Champs de formulaire --------- */
+/* Chaque règle est scoppée sous .form pour rester “pure” */
+.form label {
+  font-size: 0.9rem;
+  font-weight: 600;
+  display: block;
+  margin-bottom: 0.35rem;
+}
+
+.form input,
+.form select,
+.form textarea {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border: 2px solid #060e1a;
+  border-radius: 6px;
+  font-size: 1rem;
+  transition: border-color 0.15s ease;
+}
+
+.form input:focus,
+.form select:focus,
+.form textarea:focus {
+  outline: none;
+  border-color: #0079ff;
+}
+
+.form textarea {
+  min-height: 160px;
+  resize: vertical;
+}
+
+/* --------- 4. Checkbox --------- */
+.checkbox {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  font-size: 0.85rem;
+}
+
+/* --------- 5. Bouton --------- */
+.submit {
+  place-self: center;
+  cursor: pointer;
+  background: #c78d33;
+  border: none;
+  color: #ffffff;
+  font-weight: 700;
+  padding: 0.85rem 3.5rem;
+  border-radius: 6px;
+  font-size: 1rem;
+  transition: background 0.15s ease;
+}
+.submit:hover {
+  background: #a87427;
+}
+
+/* --------- 6. Messages --------- */
+.error {
+  color: #c12121;
+  font-size: 0.75rem;
+  margin-top: 0.25rem;
+}
+
+.centerbox {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  padding: 4rem 1.5rem;
+}

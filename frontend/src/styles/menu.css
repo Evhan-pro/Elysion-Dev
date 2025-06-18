@@ -1,0 +1,23 @@
+/* Menu sticky haut (desktop) */
+.sticky-menu {
+  background-color: #C2D5EE;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  text-align: center;
+}
+
+/* Menu mobile en bas */
+nav.fixed-bottom {
+  background-color: #C2D5EE;
+  border-top: 1px solid #e5e5e5;
+  text-align: center;
+}
+
+.sticky-menu .nav-center {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 2rem;
+  align-items: center;
+}

@@ -12,6 +12,60 @@ html, body {
   overflow-x: hidden;
 }
 
+/* ----- Header/Navigation ----- */
+header {
+  background-color: white;
+  padding: 1rem 2rem;
+  position: relative;
+  z-index: 10;
+}
+
+header .container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  flex-shrink: 0;
+}
+
+.nav-right {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.nav-auth {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+header a {
+  color: #1a2b5f;
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+header .btn-connexion {
+  color: #1a2b5f;
+}
+
+header .btn-inscription {
+  background-color: #fbbf24;
+  color: #1a2b5f;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  font-weight: 600;
+}
+
 p{
   color: black;
 }
@@ -47,9 +101,50 @@ a {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  align-items: center;
   justify-content: center;
-  text-align: center;
+  text-align: left;
+  padding-left: 5rem;
+}
+
+/* ----- Section Services ----- */
+.service-card {
+  padding: 2rem;
+  background-color: #f8f9fa;
+  border-radius: 8px;
+  transition: transform 0.3s ease;
+  height: 100%;
+}
+
+.service-card:hover {
+  transform: translateY(-5px);
+}
+
+.service-icon {
+  color: #0d47a1;
+}
+
+.service-card h3 {
+  color: #1a2b5f;
+  font-weight: 600;
+}
+
+.service-card p {
+  color: #4a5568;
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+.service-card .btn-warning {
+  background-color: #fbbf24;
+  border: none;
+  color: #1a2b5f;
+  font-weight: 600;
+  padding: 0.5rem 1.5rem;
+  transition: background-color 0.3s ease;
+}
+
+.service-card .btn-warning:hover {
+  background-color: #f59e0b;
 }
 
 /* ----- Boutons ----- */
