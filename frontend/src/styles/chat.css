@@ -1,10 +1,12 @@
-/* Bulle flottante */
+/* ─────────────────────────────
+   1. Bulle flottante
+   ───────────────────────────── */
 .chat-bubble {
   position: fixed;
   bottom: 24px;
   right: 24px;
   background: #1E3A8A;
-  color: white;
+  color: #fff;
   border-radius: 50%;
   padding: 14px;
   cursor: pointer;
@@ -12,11 +14,11 @@
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25);
   transition: transform 0.2s ease;
 }
-.chat-bubble:hover {
-  transform: scale(1.1);
-}
+.chat-bubble:hover { transform: scale(1.1); }
 
-/* Fenêtre principale */
+/* ─────────────────────────────
+   2. Fenêtre principale
+   ───────────────────────────── */
 .chat-window {
   position: fixed;
   bottom: 90px;
@@ -32,38 +34,32 @@
   z-index: 9999;
   animation: fadeInUp 0.3s ease-out;
 }
-
 @keyframes fadeInUp {
-  from {
-    transform: translateY(20px);
-    opacity: 0;
-  }
-  to {
-    transform: translateY(0px);
-    opacity: 1;
-  }
+  from { transform: translateY(20px); opacity: 0; }
+  to   { transform: translateY(0);    opacity: 1; }
 }
 
-/* Header */
-.chat-header {
-  background: #1E3A8A;
-  color: white;
-  padding: 16px;
-  font-weight: 600;
-  font-size: 1rem;
+/* ─────────────────────────────
+   3. Header – gradient moderne
+   ───────────────────────────── */
+.chat-header-gradient {
+  background: linear-gradient(180deg, #00AEEF 0%, #0078FF 100%);
+  color: #fff;
+  padding: 14px 16px;
   display: flex;
-  justify-content: space-between;
   align-items: center;
+  border-top-left-radius: 16px;
+  border-top-right-radius: 16px;
 }
-.chat-header button {
-  background: transparent;
-  border: none;
-  color: white;
-  font-size: 1.1rem;
-  cursor: pointer;
-}
+.chat-header-content { display: flex; align-items: center; width: 100%; gap: 12px; }
+.chat-header-avatar { width: 36px; height: 36px; border-radius: 50%; object-fit: cover; }
+.chat-header-text   { display: flex; flex-direction: column; font-size: 14px; line-height: 1.25; }
+.chat-header-status { font-size: 12px; opacity: 0.85; }
+.chat-header-close  { background: transparent; border: none; cursor: pointer; margin-left: auto; display: flex; align-items: center; }
 
-/* Corps du chat */
+/* ─────────────────────────────
+   4. Corps du chat
+   ───────────────────────────── */
 .chat-body {
   flex: 1;
   padding: 16px;
@@ -74,91 +70,91 @@
   background: #f9fafb;
 }
 
-/* Bulles de messages */
-.chat-msg {
-  padding: 10px 14px;
-  border-radius: 16px;
-  max-width: 80%;
-  font-size: 0.95rem;
-  line-height: 1.4;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
-}
+/* ─────────────────────────────
+   5. Messages wrapper
+   ───────────────────────────── */
+.chat-msg { display: flex; }
 
-.chat-msg.user {
-  background-color: #FCD34D;
-  color: #1E3A8A;
-  align-self: flex-end;
-}
-
-.chat-msg.bot {
-  background-color: #e5e7eb;
-  color: #111827;
-  align-self: flex-start;
-}
-
-/* Input */
-.chat-input {
-  display: flex;
-  padding: 12px;
-  border-top: 1px solid #e5e7eb;
-  background: white;
-}
-.chat-input input {
-  flex: 1;
-  padding: 10px 14px;
-  border: 1px solid #d1d5db;
-  border-radius: 8px;
-  font-size: 0.95rem;
-  outline: none;
-  margin-right: 8px;
-}
-.chat-input button {
-  background-color: #1E3A8A;
-  color: white;
-  border: none;
-  border-radius: 8px;
-  padding: 10px 16px;
-  cursor: pointer;
-  font-weight: 500;
-  transition: background-color 0.2s ease;
-}
-.chat-input button:hover {
-  background-color: #2743ad;
-}
-
-.chat-avatar-row {
+.chat-msg.bot { justify-content: flex-start; }
+.chat-msg.bot .chat-avatar-row {
   display: flex;
   align-items: flex-start;
-  gap: 14px;
-  min-height: 48px;
+  gap: 10px;
+  background: #E5E7EB;
+  color: #111827;
+  border-radius: 0 12px 12px 12px;
+  padding: 10px 14px;
+  box-shadow: 0 2px 6px rgba(0,0,0,.05);
+  max-width: 80%;
 }
-
-.chat-avatar {
-  width: 20%   ;
-  height: 20%;
+.chat-msg.bot .chat-avatar {
+  width: 28px;
+  height: 28px;
   border-radius: 50%;
   flex-shrink: 0;
+  object-fit: cover;
 }
+.chat-msg.bot .chat-bubble-content { background: transparent; box-shadow: none; padding: 0; }
 
-.chat-bubble-content {
+.chat-msg.user { justify-content: flex-end; }
+.chat-msg.user .chat-avatar-row {
   display: flex;
-  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
+  background: #0078FF;
+  color: #fff;
+  border: 1px solid #0064d1;
+  border-radius: 12px 12px 0 12px;
+  padding: 10px 14px;
+  box-shadow: 0 2px 6px rgba(0,0,0,.1);
+  max-width: 80%;
+  margin-right: 0;
 }
+.chat-msg.user .chat-avatar {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  object-fit: cover;
+  box-shadow: 0 0 0 2px rgba(255,255,255,.3);
+}
+.chat-msg.user .chat-bubble-content { background: transparent; padding: 0; box-shadow: none; color: #fff; }
 
-.chat-text {
-  font-size: 1.1rem;
-  line-height: 1.5;
-}
+/* Texte & heure */
+.chat-text { font-size: 1rem; line-height: 1.5; }
+.chat-time { font-size: 0.8rem; opacity: 0.8; margin-top: 4px; text-align: right; }
 
-.chat-time {
-  font-size: 0.85rem;
-  color: #6b7280;
-  margin-top: 6px;
+/* ─────────────────────────────
+   6. Quick‑reply chips
+   ───────────────────────────── */
+.quick-replies { display: flex; flex-wrap: wrap; gap: 8px; margin: 12px 0; }
+.quick-reply-chip {
+  background: #F0F7FF;
+  border: 1px solid #0078FF;
+  color: #0078FF;
+  border-radius: 20px;
+  padding: 6px 12px;
+  font-size: 13px;
+  cursor: pointer;
+  transition: 0.2s;
 }
+.quick-reply-chip:hover { background: #0078FF; color: #fff; }
 
-.chat-feedback {
-  margin-top: 8px;
-  font-size: 1.3rem;
-  display: flex;
-  gap: 14px;
+/* ─────────────────────────────
+   7. Zone input
+   ───────────────────────────── */
+.chat-input { display: flex; padding: 12px; border-top: 1px solid #E5E7EB; background: #fff; }
+.chat-input input {
+  flex: 1; padding: 10px 14px; border: 1px solid #D1D5DB; border-radius: 8px; font-size: 0.95rem; outline: none; margin-right: 8px;
 }
+.chat-input button {
+  background: #1E3A8A; color: #fff; border: none; border-radius: 8px; padding: 10px 16px; font-weight: 500; cursor: pointer; transition: background 0.2s;
+}
+.chat-input button:hover { background: #2743AD; }
+
+/* ─────────────────────────────
+   8. Feedback
+   ───────────────────────────── */
+.chat-feedback { margin-top: 8px; display: flex; gap: 14px; font-size: 1.2rem; }
+.chat-feedback button { background: transparent; border: none; cursor: pointer; }
+.chat-feedback button:hover { transform: scale(1.2); transition: transform 0.15s; }
