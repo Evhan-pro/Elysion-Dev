@@ -80,6 +80,7 @@ export default function SimulationPage() {
   const renderStep = () => {
     /* ====== ÉTAPE 1 ====== */
     if (step === 1) {
+      <Menu />
       return (
         <>
           <h2 className="wizard-title">Informations générales</h2>
@@ -233,6 +234,34 @@ export default function SimulationPage() {
       );
     }
   };
+  
+  /* ---------- FOOTER : labels & boutons ---------- */
+const isSubmitStep = status === "freelance" ? step === 3 : step === maxSteps;
 
-  
-  
+return (
+  <div className="simulation-page">
+    <Menu />
+    …
+    <form className="wizard-container" onSubmit={handleSubmit}>
+      {renderStep()}
+
+      <div className="wizard-footer">
+        {step > 1 && (
+          <button type="button" className="secondary-btn" onClick={back}>
+            Retour
+          </button>
+        )}
+        {isSubmitStep ? (
+          <button type="submit" className="primary-btn">Valider</button>
+        ) : (
+          <button type="button" className="primary-btn" onClick={handleNext}>
+            Suivant
+          </button>
+        )}
+      </div>
+
+      <p className="step-count">Step {step}/{maxSteps}</p>
+    </form>
+  </div>
+);
+}
