@@ -1,50 +1,54 @@
-.auth-page {
-    background-color: #f3f4f6;
-    min-height: 100vh;
-    padding-top: 120px;
-    padding-bottom: 40px;
-  }
-  
-  .auth-box {
-    background-color: #ffffff;
-    padding: 40px;
-    max-width: 500px;
-    margin: 0 auto;
-    border-radius: 12px;
-    box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.05);
-  }
-  
-  .auth-box input {
-    width: 100%;
-    padding: 12px;
-    margin-bottom: 20px;
-    border-radius: 8px;
-    border: 1px solid #d1d5db;
-  }
-  
-  .auth-box button {
-    background-color: #1E3A8A;
-    color: white;
-    padding: 12px 24px;
-    border-radius: 8px;
-    font-weight: 600;
-    width: 100%;
-    border: none;
-    transition: all 0.3s ease-in-out;
-  }
-  
-  .auth-box button:hover {
-    background-color: #FCD34D;
-    color: #1E3A8A;
-  }
-  
-  .auth-box a {
-    color: #1E3A8A;
-    font-weight: 500;
-    text-decoration: none;
-  }
-  
-  .auth-box a:hover {
-    text-decoration: underline;
-  }
-  
+/* === Layout générique === */
+.auth-page{
+  background:#fff;min-height:100vh;display:flex;flex-direction:column;
+}
+.split-screen{display:flex;flex:1;flex-direction:column}
+@media(min-width:992px){.split-screen{flex-direction:row}}
+
+/* === Panneaux === */
+.left-panel{
+  flex:1;background:#e7edf6;display:flex;align-items:flex-start;
+  justify-content:center;padding:80px 24px;
+}
+.right-panel{
+  flex:1;background:#e5e7eb;display:none;align-items:center;justify-content:center
+}
+@media(min-width:992px){.right-panel{display:flex}}
+.form-wrapper{width:100%;max-width:420px}
+
+/* === Titres / sous-titres === */
+.auth-title{font-size:2rem;font-weight:700;margin-bottom:8px}
+.auth-subtitle{color:#6b7280;margin-bottom:32px}
+
+/* === Formulaire === */
+.auth-form label{font-weight:600;margin-bottom:6px;display:block}
+.auth-form input{
+  width:100%;padding:12px 16px;border:1px solid #d1d5db;border-radius:8px;
+  margin-bottom:20px;font-size:1rem;
+}
+.password-label-row{display:flex;justify-content:space-between;align-items:center;margin-bottom:6px}
+.forgot-link{font-size:.875rem;color:#1e3a8a;text-decoration:none}
+.forgot-link:hover{text-decoration:underline}
+
+/* === Boutons === */
+.primary-btn{
+  background:#f0b34b;color:#fff;border:none;width:100%;padding:14px 24px;
+  border-radius:8px;font-weight:600;font-size:1rem;cursor:pointer;
+  transition:background .25s ease;margin-top:4px;
+}
+.primary-btn:hover{background:#1e3a8a}
+.oauth-btn{
+  width:100%;display:flex;align-items:center;justify-content:center;gap:8px;
+  padding:12px 24px;border-radius:8px;border:1px solid #d1d5db;background:#fff;
+  font-weight:600;margin-top:16px;cursor:pointer;transition:background .25s ease;
+}
+.oauth-btn:hover{background:#f3f4f6}
+.oauth-btn .icon{font-size:1.1rem}
+.google-btn .icon{color:#ea4335}
+.apple-btn .icon{color:#000}
+.signup-text{margin-top:24px;text-align:center;font-size:.95rem}
+.signup-text a{color:#1e3a8a;font-weight:600;text-decoration:none}
+.signup-text a:hover{text-decoration:underline}
+
+/* === Illustration === */
+.illustration{max-width:320px;height:auto}
