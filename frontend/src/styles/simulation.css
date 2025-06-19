@@ -5,11 +5,12 @@
 .login-reminder a:hover{text-decoration:underline}
 
 /* ===== PROGRESS BAR ===== */
-.progress-bar{height:3px;background:#000;width:100%}
-.progress-indicator{height:3px;background:#1e3a8a;transition:width .3s ease}
+.progress-bar{height:3px;background:#d1d5db;width:100%}
+.progress-indicator{height:3px;background:#000;transition:width .3s}
 
 /* ===== WIZARD ===== */
 .wizard-container{max-width:620px;margin:48px auto;padding:0 16px;display:flex;flex-direction:column;align-items:center;text-align:center}
+.wizard-container label{text-align:left}
 .wizard-title{font-size:1.7rem;font-weight:700;margin-bottom:4px}
 .wizard-subtitle{color:#6b7280;margin-bottom:32px;font-size:.95rem}
 
@@ -41,4 +42,3 @@
 .secondary-btn{background:#fff;border:1px solid #1e3a8a}
 .secondary-btn:hover{background:#f3f4f6}
 .step-count{margin-top:12px;font-size:.9rem;color:#6b7280}
-  
