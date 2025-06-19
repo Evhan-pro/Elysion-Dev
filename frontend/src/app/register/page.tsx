@@ -6,7 +6,7 @@ import Image from "next/image";
 import Menu from "../../components/Menu";
 import { toast } from "react-toastify";
 import { FaGoogle, FaApple } from "react-icons/fa";
-import "../../styles/auth.css";         // ⬅️  Chemin à ajuster si besoin
+import "../../styles/auth.css";
 
 export default function RegisterPage() {
   const router = useRouter();
