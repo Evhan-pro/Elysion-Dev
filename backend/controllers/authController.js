@@ -48,7 +48,7 @@ export const loginUser = async (req, res) => {
     }
 
     res.json({
-      id: user.id,
+      id: user._id,
       name: user.name,
       email: user.email,
       token: generateToken(user.id),
@@ -75,4 +75,8 @@ export const getUserProfile = async (req, res) => {
     console.error("Erreur récupération profil :", error);
     res.status(500).json({ message: "Erreur serveur" });
   }
+
+  exports.getMe = (req, res) => {
+    res.status(200).json({ user: req.user });
+  };
 };
