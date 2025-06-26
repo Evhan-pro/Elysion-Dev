@@ -1,41 +1,43 @@
 "use client";
 
-import { useState } from "react";
-import { useRouter } from "next/navigation";
+import { useState, useEffect } from "react";
+import { useRouter } from "next/navigation";          // ✅ App Router
 import Image from "next/image";
-import Menu from "../../components/Menu";
+import Menu from "@/components/Menu";
 import { toast } from "react-toastify";
 import { FaGoogle, FaApple } from "react-icons/fa";
-import "../../styles/auth.css";
+import "@/styles/auth.css";
+import { useAuth } from "@/context/AuthContext";        // ⬅️ nouveau
 
 export default function LoginPage() {
   const router = useRouter();
-  const [name, setName] = useState("");
+  const { user, login } = useAuth();                   // ⬅️ nouveau
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
+  /* Si déjà connecté → dashboard */
+  useEffect(() => {
+    if (user) router.replace("/dashboard");
+  }, [user]);
+
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
-
     try {
-      const response = await fetch("http://localhost:5000/api/auth/login", {
+      const res = await fetch("http://localhost:5000/api/auth/login", {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ email, password }), // name isn't required by the API
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email, password }),
       });
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.message || "Erreur de connexion");
 
-      const data = await response.json();
+      /* 1️⃣  stocke & charge le profil */
+      login(data.token);          // <— met à jour le contexte
 
-      if (!response.ok) throw new Error(data.message || "Erreur de connexion");
-
-      localStorage.setItem("token", data.token);
+      /* 2️⃣  toast + redirection immédiate */
       toast.success("Connexion réussie !");
-
-      setTimeout(() => {
-        router.push("/dashboard");
-      }, 3000);
+      router.replace("/dashboard");
     } catch (err: any) {
       toast.error(err.message || "Erreur inconnue");
     }
@@ -55,15 +57,6 @@ export default function LoginPage() {
             </p>
 
             <form onSubmit={handleLogin} className="auth-form">
-              <label htmlFor="name">Nom*</label>
-              <input
-                id="name"
-                type="text"
-                placeholder="Nom complet"
-                value={name}
-                onChange={(e) => setName(e.target.value)}
-                required
-              />
 
               <label htmlFor="email">Email*</label>
               <input

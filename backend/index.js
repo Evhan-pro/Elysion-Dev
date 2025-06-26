@@ -56,7 +56,6 @@ app.post("/api/chatbot", async (req, res) => {
 // === Routes Auth ===
 app.use("/api/auth", authRoutes);
 
-// === Connexion à la BDD et lancement du serveur ===
 sequelize.authenticate()
   .then(() => console.log("🗄️ Connexion MySQL réussie"))
   .then(() => sequelize.sync())

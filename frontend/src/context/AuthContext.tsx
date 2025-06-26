@@ -12,34 +12,41 @@ type AuthContextType = {
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
+const API = "http://localhost:5000/api";
+
 export function AuthProvider({ children }: { children: React.ReactNode }) {
   const [user, setUser] = useState<User | null>(null);
   const [loading, setLoading] = useState(true);
-
 
   useEffect(() => {
     const token = localStorage.getItem("token");
     if (!token) { setLoading(false); return; }
 
-    fetch("http://localhost:5000/api/auth/me", {
+    fetch(`${API}/auth/me`, {
       headers: { Authorization: `Bearer ${token}` },
     })
-      .then(r => r.ok ? r.json() : null)
-      .then(d => d && setUser(d.user))
+      .then(r => {
+        if (!r.ok) throw new Error("invalid");
+        return r.json();
+      })
+      .then(d => setUser(d.user))
+      .catch(() => {
+        localStorage.removeItem("token");
+        setUser(null);
+      })
       .finally(() => setLoading(false));
   }, []);
 
-  /* login */
   const login = (token: string) => {
     localStorage.setItem("token", token);
-    fetch("http://localhost:5000/api/auth/me", {
+    fetch(`${API}/auth/me`, {
       headers: { Authorization: `Bearer ${token}` },
     })
       .then(r => r.json())
       .then(d => setUser(d.user));
   };
 
-  /* logout */
+  /*  logout */
   const logout = () => {
     localStorage.removeItem("token");
     setUser(null);
