@@ -2,41 +2,52 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { FiHome, FiUser, FiFileText } from "react-icons/fi";
 import Image from "next/image";
+import { FiHome, FiUser, FiFileText } from "react-icons/fi";
+import { useAuth } from "@/context/AuthContext";
 import "../styles/menu.css";
 
 export default function Menu() {
   const pathname = usePathname();
+  const { user, loading, logout } = useAuth();
+
+  /* Fonction utilitaire pour colorer le lien actif */
+  const active = (path: string) => (pathname === path ? "text-primary" : "text-dark");
 
   return (
     <>
-      {/* Menu desktop sticky haut */}
+      {/* Menu desktop (sticky en haut) */}
       <nav
-        className="d-none d-sm-flex align-items-center justify-content-between sticky-menu px-4"
-        style={{ zIndex: 9999, height: "80px" }}
+        className="d-none d-sm-flex align-items-center justify-content-between sticky-menu px-4 bg-white shadow-sm"
+        style={{ zIndex: 9999, height: 80 }}
       >
-        {/* Logo gauche */}
-        <div className="logo">
-          <Link href="/" className={`fw-medium text-decoration-none ${pathname === "/" ? "text-primary" : "text-dark"}`}>
-            <Image src="/logo.png" alt="Logo Elysion" width={120} height={40} />
-          </Link>
+        {/* Logo */}
+        <Link href="/" className="logo">
+          <Image src="/logo.png" alt="Logo Elysion" width={120} height={40} />
+        </Link>
+
+        {/* Liens centraux */}
+        <div className="nav-center d-flex gap-4">
+          <Link href="/simulation" className={`fw-medium text-decoration-none ${active("/simulation")}`}>Simuler ma retraite</Link>
+          <Link href="#" className={`fw-medium text-decoration-none ${active("/optimiser")}`}>Optimiser ma retraite</Link>
+          <Link href="/bulletins" className={`fw-medium text-decoration-none ${active("/bulletins")}`}>Stocker mes documents</Link>
+          <Link href="/contact" className={`fw-medium text-decoration-none ${active("/contact")}`}>Contact</Link>
         </div>
 
-        {/* Navigation et boutons droite */}
-        <div className="d-flex align-items-center gap-4">
-          <div className="nav-center">
-            <Link href="/simulation" className={`fw-medium text-decoration-none ${pathname === "/simulation" ? "text-primary" : "text-dark"}`}>Simuler ma retraite</Link>
-            <Link href="#" className={`fw-medium text-decoration-none ${pathname === "/simulation" ? "text-primary" : "text-dark"}`}>Optimiser ma retraite</Link>
-            <Link href="/bulletins" className={`fw-medium text-decoration-none ${pathname === "/simulation" ? "text-primary" : "text-dark"}`}>Stocker mes documents</Link>
-            <Link href="/contact" className={`fw-medium text-decoration-none ${pathname === "/contact" ? "text-primary" : "text-dark"}`}>Contact</Link>
-          </div>
-          
-          <div className="d-flex gap-3 align-items-center">
-            <Link href="/login" className="btn btn-outline-dark btn-sm">Connexion</Link>  
-            <Link href="/register" className="btn btn-warning btn-sm text-dark fw-semibold">Inscription</Link>
-          </div>
-        </div>
+        {/* CTA droite : selon connexion */}
+        {!loading && (
+          user ? (
+            <div className="d-flex align-items-center gap-3">
+              <span className="fw-semibold">{user.name}</span>
+              <button className="btn btn-outline-dark btn-sm" onClick={logout}>Déconnexion</button>
+            </div>
+          ) : (
+            <div className="d-flex gap-3">
+              <Link href="/login" className="btn btn-outline-dark btn-sm">Connexion</Link>
+              <Link href="/register" className="btn btn-warning btn-sm text-dark fw-semibold">Inscription</Link>
+            </div>
+          )
+        )}
       </nav>
 
       {/* Menu mobile (icônes en bas) */}
@@ -44,9 +55,9 @@ export default function Menu() {
         className="d-flex d-sm-none fixed-bottom bg-white border-top justify-around py-2 shadow-sm"
         style={{ zIndex: 1050 }}
       >
-        <Link href="/"><FiHome size={24} className={pathname === "/" ? "text-primary" : "text-secondary"} /></Link>
-        <Link href="/simulation"><FiUser size={24} className={pathname === "/simulation" ? "text-primary" : "text-secondary"} /></Link>
-        <Link href="/bulletins"><FiFileText size={24} className={pathname === "/bulletins" ? "text-primary" : "text-secondary"} /></Link>
+        <Link href="/"><FiHome size={24} className={active("/")} /></Link>
+        <Link href="/simulation"><FiUser size={24} className={active("/simulation")} /></Link>
+        <Link href="/bulletins"><FiFileText size={24} className={active("/bulletins")} /></Link>
       </nav>
     </>
   );
