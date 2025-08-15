@@ -37,14 +37,18 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       .finally(() => setLoading(false));
   }, []);
 
-  const login = (token: string) => {
-    localStorage.setItem("token", token);
-    fetch(`${API}/auth/me`, {
-      headers: { Authorization: `Bearer ${token}` },
-    })
-      .then(r => r.json())
-      .then(d => setUser(d.user));
-  };
+  const login = (token: string, profile?: User) => {
+  localStorage.setItem("token", token);
+  if (profile) {
+    setUser(profile);
+    return;
+  }
+  fetch(`${API}/auth/me`, {
+    headers: { Authorization: `Bearer ${token}` },
+  })
+    .then(r => r.json())
+    .then(d => setUser(d.user));
+};
 
   /*  logout */
   const logout = () => {

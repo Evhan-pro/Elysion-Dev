@@ -1,17 +1,16 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { useRouter } from "next/navigation";          // ✅ App Router
+import { useRouter } from "next/navigation";
 import Image from "next/image";
-import Menu from "@/components/Menu";
 import { toast } from "react-toastify";
 import { FaGoogle, FaApple } from "react-icons/fa";
 import "@/styles/auth.css";
-import { useAuth } from "@/context/AuthContext";        // ⬅️ nouveau
+import { useAuth } from "@/context/AuthContext";
 
 export default function LoginPage() {
   const router = useRouter();
-  const { user, login } = useAuth();                   // ⬅️ nouveau
+  const { user, login } = useAuth();
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -22,30 +21,30 @@ export default function LoginPage() {
   }, [user]);
 
   const handleLogin = async (e: React.FormEvent) => {
-    e.preventDefault();
-    try {
-      const res = await fetch("http://localhost:5000/api/auth/login", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email, password }),
-      });
-      const data = await res.json();
-      if (!res.ok) throw new Error(data.message || "Erreur de connexion");
+  e.preventDefault();
+  try {
+    const res = await fetch("http://localhost:5000/api/auth/login", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ email, password }),
+    });
+    const data = await res.json();
+    if (!res.ok) throw new Error(data.message || "Erreur de connexion");
 
-      /* 1️⃣  stocke & charge le profil */
-      login(data.token);          // <— met à jour le contexte
+    /* 1️⃣  stocke le token + met le profil dans le contexte */
+    login(data.token, { id: data.id, name: data.name, email: data.email });
 
-      /* 2️⃣  toast + redirection immédiate */
-      toast.success("Connexion réussie !");
-      router.replace("/dashboard");
-    } catch (err: any) {
-      toast.error(err.message || "Erreur inconnue");
-    }
-  };
+    /* 2️⃣  toast + redirection */
+    toast.success("Connexion réussie !");
+    router.replace("/dashboard");
+  } catch (err: any) {
+    toast.error(err.message || "Erreur inconnue");
+  }
+};
+
 
   return (
     <div className="auth-page">
-      <Menu />
 
       <div className="split-screen">
         {/* ------- Left side: Form ------- */}
