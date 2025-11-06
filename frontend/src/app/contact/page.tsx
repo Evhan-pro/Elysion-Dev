@@ -3,7 +3,7 @@ import Menu from "../../components/Menu";
 
 export default function ContactPage() {
   return (
-    <main>
+    <main className="full-bleed">
         <Menu/>
         <ContactForm />
     </main>

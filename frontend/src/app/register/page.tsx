@@ -44,14 +44,11 @@ export default function RegisterPage() {
     <div className="auth-page">
       <Menu />
 
-      <div className="split-screen">
+      <div className="split-screen full-bleed">
         {/* --------- Panneau gauche --------- */}
         <section className="left-panel">
           <div className="form-wrapper">
             <h1 className="auth-title">Inscrivez-vous</h1>
-            <p className="auth-subtitle">
-              Lorem ipsum dolor sit amet adipiscing elit.
-            </p>
 
             <form onSubmit={handleRegister} className="auth-form">
               <label htmlFor="name">Nom*</label>

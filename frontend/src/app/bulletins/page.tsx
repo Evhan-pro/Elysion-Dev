@@ -48,7 +48,7 @@ export default function BulletinsPage() {
     <div className="bulletin-page">
       <Menu />
 
-      <div className="container py-5">
+      <div className="container py-5 ">
         <div className="row g-4">
           {/* Zone de drag & drop */}
           <div className="col-md-6">
@@ -106,7 +106,7 @@ export default function BulletinsPage() {
     value={filter}
     onChange={(e) => {
       setFilter(e.target.value);
-      setDisplayedCount(6); // Réinitialise l'affichage lors du filtre
+      setDisplayedCount(6);
     }}
   />
 
@@ -147,53 +147,3 @@ export default function BulletinsPage() {
     </div>
   );
 }
-
-
-
-// fichier: ./src/app/bulletins/page.tsx
-// "use client";
-
-// import Menu from "../../components/Menu";
-
-// export default function BulletinsPage() {
-//   const allBulletins = [
-//     { id: 1, date: "2024-02", status: "Validé" },
-//     { id: 2, date: "2024-01", status: "Validé" },
-//     { id: 3, date: "2023-12", status: "Validé" },
-//     { id: 4, date: "2023-11", status: "En attente" },
-//     { id: 5, date: "2023-10", status: "En attente" },
-//     { id: 6, date: "2023-09", status: "Validé" },
-//   ];
-
-//   const lastSixMonthsBulletins = allBulletins.slice(0, 6);
-
-//   return (
-//     <div className="min-h-screen bg-gray-100 text-gray-900">
-//       <Menu />
-//       <div className="max-w-5xl mx-auto p-6 grid grid-cols-1 md:grid-cols-2 gap-6 mt-20">
-//         {/* Zone de dépôt des fichiers actuellement désactivée */}
-//         <div className="bg-white p-6 rounded-lg shadow-md">
-//           <h2 className="text-2xl font-bold text-blue-900 mb-4">Déposer un bulletin</h2>
-//           <div className="border-2 border-dashed border-blue-600 bg-white p-10 rounded-lg flex flex-col items-center justify-center cursor-pointer hover:bg-blue-50 transition">
-//             <p className="text-lg text-blue-600">Déposez vos bulletins ici ou cliquez pour sélectionner un fichier</p>
-//           </div>
-//         </div>
-
-//         {/* Affichage des bulletins des 6 derniers mois */}
-//         <div className="bg-white p-6 rounded-lg shadow-md">
-//           <h2 className="text-2xl font-bold text-blue-900 mb-4">Bulletins des 6 derniers mois</h2>
-//           <ul className="space-y-4">
-//             {lastSixMonthsBulletins.map((bulletin) => (
-//               <li key={bulletin.id} className="flex justify-between p-3 border rounded-lg shadow-sm">
-//                 <span>{bulletin.date}</span>
-//                 <span className={`px-3 py-1 rounded-lg text-sm font-semibold ${bulletin.status === "Validé" ? "bg-green-200 text-green-800" : "bg-yellow-200 text-yellow-800"}`}>
-//                   {bulletin.status}
-//                 </span>
-//               </li>
-//             ))}
-//           </ul>
-//         </div>
-//       </div>
-//     </div>
-//   );
-// }

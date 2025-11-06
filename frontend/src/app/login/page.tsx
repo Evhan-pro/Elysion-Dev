@@ -46,14 +46,11 @@ export default function LoginPage() {
   return (
     <div className="auth-page">
 
-      <div className="split-screen">
+      <div className="split-screen full-bleed">
         {/* ------- Left side: Form ------- */}
         <section className="left-panel">
           <div className="form-wrapper">
             <h1 className="title">Connectez-vous</h1>
-            <p className="subtitle">
-              Lorem ipsum dolor sit amet adipiscing elit.
-            </p>
 
             <form onSubmit={handleLogin} className="auth-form">
 
