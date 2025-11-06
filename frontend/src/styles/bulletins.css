@@ -2,7 +2,7 @@
 .bulletin-page {
     background-color: #f3f4f6;
     min-height: 100vh;
-    padding-top: 120px; /* évite que le menu le masque */
+    padding-top: 120px;
     padding-bottom: 40px;
   }
   

@@ -1,14 +1,16 @@
 /* --------- 1. Conteneur principal --------- */
 .wrapper {
-  background: #e5ecf5;
+  background: transparent;          /* plus de fond global imposé */
   min-height: 100vh;
-  padding: 4rem 1rem;
+  padding-top: 20%;
+  padding-bottom: 20%;
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;          /* centre verticalement le formulaire */
 }
 
-/* Le titre est désormais une classe locale : */
+/* Le titre */
 .title {
   font-size: 2.5rem;
   font-weight: 700;
@@ -16,14 +18,19 @@
   text-align: center;
 }
 
-/* --------- 2. Carte-formulaire --------- */
+.h1{
+  font-style: bold;
+  padding-bottom: 20%;
+}
+
+/* --------- 2. Formulaire --------- */
 .form {
   width: 100%;
   max-width: 640px;
-  background: #ffffff;
-  padding: 2.5rem;
-  border-radius: 8px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.07);
+  background: transparent;          /* ← enlève le fond blanc */
+  padding: 0;                        /* pas de padding de carte */
+  border-radius: 0;                  /* pas d'arrondi */
+  box-shadow: none;                  /* pas d'ombre */
   display: grid;
   gap: 1.5rem;
 }
@@ -35,13 +42,14 @@
   gap: 1.25rem;
 }
 @media (max-width: 640px) {
-  .row {
-    grid-template-columns: 1fr;
-  }
+  .row { grid-template-columns: 1fr; }
 }
 
 /* --------- 3. Champs de formulaire --------- */
-/* Chaque règle est scoppée sous .form pour rester “pure” */
+.form{
+  justify-items: start;
+}
+
 .form label {
   font-size: 0.9rem;
   font-weight: 600;
@@ -58,6 +66,7 @@
   border-radius: 6px;
   font-size: 1rem;
   transition: border-color 0.15s ease;
+  background: #fff;                  /* garder les champs lisibles sur fond transparent */
 }
 
 .form input:focus,
@@ -93,9 +102,7 @@
   font-size: 1rem;
   transition: background 0.15s ease;
 }
-.submit:hover {
-  background: #a87427;
-}
+.submit:hover { background: #a87427; }
 
 /* --------- 6. Messages --------- */
 .error {
@@ -110,4 +117,27 @@
   align-items: center;
   gap: 1rem;
   padding: 4rem 1.5rem;
+}
+
+/* Ligne checkbox : pleine largeur, à gauche, sur une ligne */
+.form .checkbox{
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: .35rem;               /* espace minimal entre case et texte */
+  width: auto;
+  margin-left: 0;
+  padding-left: 0;
+  text-align: left;
+}
+
+.form .checkbox input{ margin: 0; }
+.form .checkbox label{
+  margin: 0;
+  white-space: nowrap;       /* évite le retour à la ligne */
+}
+
+/* Option: si l’écran est très étroit, autoriser le retour à la ligne */
+@media (max-width: 360px){
+  .form .checkbox label{ white-space: normal; }
 }

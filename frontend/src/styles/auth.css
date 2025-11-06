@@ -7,8 +7,13 @@
 
 /* === Panneaux === */
 .left-panel{
-  flex:1;background:#e7edf6;display:flex;align-items:flex-start;
-  justify-content:center;padding:80px 24px;
+  flex:1;
+  background:#e7edf6;
+  display:flex;
+  align-items:flex-start;
+  justify-content:center;
+  padding-top: 20%;
+  padding-bottom: 20%;
 }
 .right-panel{
   flex:1;background:#e5e7eb;display:none;align-items:center;justify-content:center
